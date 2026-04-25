@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ProductApiDemo1.Controllers
@@ -28,17 +29,17 @@ namespace ProductApiDemo1.Controllers
             _service = service;
         }
         [HttpGet]
-        public List<ProductModel> GetAll()
+        public async Task<List<ProductModel>> GetAll()
         {
             return _service.GetAll();
         }
          [HttpPost]
         public void Create(ProductModel product)
         {
-            _service.Create(product);
+           _service.Create(product);
         }
          [HttpGet]
-        public ProductModel GetAllProductsById(int id)
+        public async Task<ProductModel> GetAllProductsById(int id)
         {
             return _service.GetAllProductsById(id);
         }
