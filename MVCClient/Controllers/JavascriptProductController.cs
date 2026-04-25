@@ -10,8 +10,14 @@ namespace MVCClient.Controllers
     {
         // GET: JavascriptProduct
         
-        [HttpGet]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+
+        public ActionResult Create()
         {
             return View();
         }
