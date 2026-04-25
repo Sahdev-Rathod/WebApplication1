@@ -59,12 +59,6 @@
         margin-bottom: 18px;
     }
 
-    @media (max-width: 767px) {
-        .control-label {
-            text-align: left !important;
-            margin-bottom: 6px;
-        }
-    }
 </style>
 
 <div class="edit-panel panel panel-default">
@@ -80,7 +74,7 @@
             @Html.AntiForgeryToken()
 
             @* Validation summary shown as alert *@
-            @if (!ViewData.ModelState.IsValid)
+            if (!ViewData.ModelState.IsValid)
             {
                 <div class="alert alert-danger validation-alert" role="alert">
                     @Html.ValidationSummary(true, "Please correct the errors and try again.", new { @class = "text-danger", @role = "alert" })

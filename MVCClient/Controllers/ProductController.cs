@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MVCClient.Controllers
@@ -12,7 +13,7 @@ namespace MVCClient.Controllers
         // GET: Product
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             List<Product> products1 = new List<Product>();
 
@@ -20,7 +21,7 @@ namespace MVCClient.Controllers
 
             client.BaseAddress = new Uri("https://localhost:44393/api/");
 
-            HttpResponseMessage response = client.GetAsync("Product").Result;
+            HttpResponseMessage response = await client.GetAsync("Product");
 
             if (response.IsSuccessStatusCode)
             {
@@ -40,7 +41,7 @@ namespace MVCClient.Controllers
 
         [HttpPost]
 
-        public ActionResult Create(Product product)
+        public async Task<ActionResult> Create(Product product)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44393/api/");
@@ -49,7 +50,7 @@ namespace MVCClient.Controllers
 
             StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = client.PostAsync("Product", content).Result;
+            HttpResponseMessage response = await client.PostAsync("Product", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -59,7 +60,7 @@ namespace MVCClient.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             Product product1 = new Product();
 
@@ -67,7 +68,7 @@ namespace MVCClient.Controllers
 
             client.BaseAddress = new Uri("https://localhost:44393/api/");
 
-            HttpResponseMessage response = client.GetAsync($"Product/{id}").Result;
+            HttpResponseMessage response = await client.GetAsync($"Product/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -81,7 +82,7 @@ namespace MVCClient.Controllers
 
         [HttpGet]
 
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             Product product1 = new Product();
 
@@ -89,7 +90,7 @@ namespace MVCClient.Controllers
 
             client.BaseAddress = new Uri("https://localhost:44393/api/");
 
-            HttpResponseMessage response = client.GetAsync($"Product/{id}").Result;
+            HttpResponseMessage response = await client.GetAsync($"Product/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -103,7 +104,7 @@ namespace MVCClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public async Task<ActionResult> Edit(Product product)
         {
             HttpClient client = new HttpClient();
 
@@ -113,7 +114,7 @@ namespace MVCClient.Controllers
 
             StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = client.PutAsync($"Product/{product.Id}", content).Result;
+            HttpResponseMessage response = await client.PutAsync($"Product/{product.Id}", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -124,7 +125,7 @@ namespace MVCClient.Controllers
 
         [HttpGet]
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             Product product1 = new Product();
 
@@ -132,7 +133,7 @@ namespace MVCClient.Controllers
 
             client.BaseAddress = new Uri("https://localhost:44393/api/");
 
-            HttpResponseMessage response = client.GetAsync($"Product/{id}").Result;
+            HttpResponseMessage response = await client.GetAsync($"Product/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -146,11 +147,11 @@ namespace MVCClient.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int Id)
+        public async Task<ActionResult> DeleteConfirmed(int Id)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44393/api/");
-            HttpResponseMessage response = client.DeleteAsync($"Product/{Id}").Result;
+            HttpResponseMessage response = await client.DeleteAsync($"Product/{Id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
