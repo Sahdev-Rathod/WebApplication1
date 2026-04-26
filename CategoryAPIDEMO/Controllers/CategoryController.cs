@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -51,6 +47,10 @@ namespace CategoryAPIDEMO.Controllers
 
                     if (user != null)
                     {
+                        //string token = JwtHelper.GenerateToken(user.Email , user.RoleName);
+
+                        //return Ok(token);
+
                         return Ok(user);
                     }
                     else

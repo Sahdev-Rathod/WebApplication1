@@ -11,7 +11,8 @@ namespace CategoryAPIDEMO.Controllers
     // [Authorize] When you want to secure the API and allow only authenticated users to access it,
     // you can use the [Authorize] attribute on the controller or specific actions.
     // This will ensure that only users who have been authenticated can access the endpoints of the ProductController.
-  
+
+    [Authorize]
     public class ProductController : ApiController
     {
         IProductService1 _service;
