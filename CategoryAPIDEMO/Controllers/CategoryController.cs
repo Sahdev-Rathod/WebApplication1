@@ -39,7 +39,7 @@ namespace CategoryAPIDEMO.Controllers
             }
         }
 
-// Login Api Using Email And Password Which is Registerd By User
+        // Login Api Using Email And Password Which is Registerd By User
         [HttpPut]
         public async Task<IHttpActionResult> Authenticate(CreadencialRequestModel creadencial)
         {
