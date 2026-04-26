@@ -1,6 +1,7 @@
 ﻿using ProductDal;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class ProductRepository : IProductRepository
 {
@@ -11,7 +12,7 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public List<Product> GetAll()
+    public async Task<List<Product>> GetAll()
     {
         return _context.Products.ToList();
     }
